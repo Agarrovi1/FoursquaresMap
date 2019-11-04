@@ -18,8 +18,9 @@ class ViewController: UIViewController {
     
     //MARK: - Properties
     private var locationManager = CLLocationManager()
-    let initialLocation = CLLocation(latitude: 40.742054, longitude: -73.769417)
+    var initialLocation = CLLocation(latitude: 40.742054, longitude: -73.769417)
     let searchRadius: CLLocationDistance = 2000
+    var venues = [Venues]()
     
     //MARK: - Functions
     private func locationAuthorization() {
@@ -44,6 +45,18 @@ class ViewController: UIViewController {
         let coordinateRegion = MKCoordinateRegion.init(center: locationCoordinate.coordinate, latitudinalMeters: self.searchRadius * 2.0, longitudinalMeters: self.searchRadius * 2.0)
         self.mapView.setRegion(coordinateRegion, animated: true)
     }
+    private func loadVenueInfo() {
+        FourSquaresAPIClient.manager.getVenues(lat: initialLocation.coordinate.latitude, long: initialLocation.coordinate.longitude, query: "coffee") { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let venuesFromJSON):
+                self.venues = venuesFromJSON
+                dump(self.venues)
+            }
+        }
+    }
+    
     //MARK: - Constraints
     private func setViewControllerUI() {
         view.backgroundColor = .white
@@ -75,7 +88,7 @@ class ViewController: UIViewController {
         setDelegates()
         mapView.userTrackingMode = .follow
         locationAuthorization()
-        
+        loadVenueInfo()
     }
 }
 
