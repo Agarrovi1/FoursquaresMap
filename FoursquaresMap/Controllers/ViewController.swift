@@ -30,7 +30,7 @@ class ViewController: UIViewController {
             locationManager.requestLocation()
             locationManager.startUpdatingLocation()
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            mapView.userTrackingMode = .follow
+            zoomIn(locationCoordinate: initialLocation)
         default:
             locationManager.requestWhenInUseAuthorization()
         }
@@ -39,6 +39,10 @@ class ViewController: UIViewController {
         locationManager.delegate = self
         mapView.delegate = self
         querySearchBar.delegate = self
+    }
+    private func zoomIn(locationCoordinate: CLLocation) {
+        let coordinateRegion = MKCoordinateRegion.init(center: locationCoordinate.coordinate, latitudinalMeters: self.searchRadius * 2.0, longitudinalMeters: self.searchRadius * 2.0)
+        self.mapView.setRegion(coordinateRegion, animated: true)
     }
     //MARK: - Constraints
     private func setViewControllerUI() {
@@ -69,19 +73,44 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setViewControllerUI()
         setDelegates()
+        mapView.userTrackingMode = .follow
         locationAuthorization()
         
     }
 }
 
+//MARK: Extensions
+
+
+
+//MARK: SearchBarDelegate
 extension ViewController: UISearchBarDelegate {
     
 }
-
+//MARK: MapViewDelegate
 extension ViewController: MKMapViewDelegate {
     
 }
-
+//MARK: LocationManagerDelegate
 extension ViewController: CLLocationManagerDelegate {
-    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("New location: \(locations)")
+    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("Authorization status changed to \(status.rawValue)")
+        switch status {
+        case .authorizedAlways,.authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            locationManager.requestLocation()
+            locationManager.startUpdatingLocation()
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            zoomIn(locationCoordinate: initialLocation)
+            //Call a function to get the current location
+        default:
+            break
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("\(error)")
+    }
 }
