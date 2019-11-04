@@ -14,6 +14,7 @@
 		4D67DE5623709841008D1167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D67DE5523709841008D1167 /* Assets.xcassets */; };
 		4D67DE5923709841008D1167 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D67DE5723709841008D1167 /* LaunchScreen.storyboard */; };
 		4D67DE6423709841008D1167 /* FoursquaresMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D67DE6323709841008D1167 /* FoursquaresMapTests.swift */; };
+		4D67DE6F237098D2008D1167 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D67DE6E237098D2008D1167 /* Secrets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		4D67DE5F23709841008D1167 /* FoursquaresMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoursquaresMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D67DE6323709841008D1167 /* FoursquaresMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoursquaresMapTests.swift; sourceTree = "<group>"; };
 		4D67DE6523709841008D1167 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D67DE6E237098D2008D1167 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +83,10 @@
 			children = (
 				4D67DE4C2370983F008D1167 /* AppDelegate.swift */,
 				4D67DE4E2370983F008D1167 /* SceneDelegate.swift */,
-				4D67DE502370983F008D1167 /* ViewController.swift */,
+				4D67DE7223709AA6008D1167 /* Models */,
+				4D67DE7123709A99008D1167 /* Views */,
+				4D67DE7023709A8B008D1167 /* Controllers */,
+				4D67DE6E237098D2008D1167 /* Secrets.swift */,
 				4D67DE522370983F008D1167 /* Main.storyboard */,
 				4D67DE5523709841008D1167 /* Assets.xcassets */,
 				4D67DE5723709841008D1167 /* LaunchScreen.storyboard */,
@@ -97,6 +102,28 @@
 				4D67DE6523709841008D1167 /* Info.plist */,
 			);
 			path = FoursquaresMapTests;
+			sourceTree = "<group>";
+		};
+		4D67DE7023709A8B008D1167 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4D67DE502370983F008D1167 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4D67DE7123709A99008D1167 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4D67DE7223709AA6008D1167 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D67DE512370983F008D1167 /* ViewController.swift in Sources */,
+				4D67DE6F237098D2008D1167 /* Secrets.swift in Sources */,
 				4D67DE4D2370983F008D1167 /* AppDelegate.swift in Sources */,
 				4D67DE4F2370983F008D1167 /* SceneDelegate.swift in Sources */,
 			);
