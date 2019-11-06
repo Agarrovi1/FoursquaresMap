@@ -15,12 +15,18 @@ class ViewController: UIViewController {
     //MARK: - Objects
     var querySearchBar = UISearchBar()
     var mapView = MKMapView()
+    var placeSearchBar = UISearchBar()
     
     //MARK: - Properties
     private var locationManager = CLLocationManager()
     var initialLocation = CLLocation(latitude: 40.742054, longitude: -73.769417)
     let searchRadius: CLLocationDistance = 2000
-    var venues = [Venues]()
+    var venues = [Venues]() {
+        didSet {
+            loadPhotoInfo()
+        }
+    }
+    var items = [[ItemWrapper]]()
     
     //MARK: - Functions
     private func locationAuthorization() {
@@ -51,8 +57,24 @@ class ViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let venuesFromJSON):
-                self.venues = venuesFromJSON
-                dump(self.venues)
+                DispatchQueue.main.async {
+                    self.venues = venuesFromJSON
+                }
+            }
+        }
+    }
+    private func loadPhotoInfo() {
+        for venue in venues {
+            FourSquaresAPIClient.manager.getPhotoInfo(id: venue.id) { (result) in
+                switch result {
+                case.failure(let error):
+                    print(error)
+                case .success(let itemFromJSON):
+                    DispatchQueue.main.async {
+                        self.items.append(itemFromJSON)
+                        dump(itemFromJSON)
+                    }
+                }
             }
         }
     }
@@ -61,6 +83,7 @@ class ViewController: UIViewController {
     private func setViewControllerUI() {
         view.backgroundColor = .white
         setSearchBarConstraints()
+        setPlaceSearchBarConstraints()
         setMapViewConstraints()
     }
     private func setSearchBarConstraints() {
@@ -75,10 +98,18 @@ class ViewController: UIViewController {
         view.addSubview(mapView)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: querySearchBar.bottomAnchor),
+            mapView.topAnchor.constraint(equalTo: placeSearchBar.bottomAnchor),
             mapView.leadingAnchor.constraint(equalTo: querySearchBar.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: querySearchBar.trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
+    }
+    private func setPlaceSearchBarConstraints() {
+        view.addSubview(placeSearchBar)
+        placeSearchBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            placeSearchBar.topAnchor.constraint(equalTo: querySearchBar.bottomAnchor),
+            placeSearchBar.leadingAnchor.constraint(equalTo: querySearchBar.leadingAnchor),
+            placeSearchBar.trailingAnchor.constraint(equalTo: querySearchBar.trailingAnchor)])
     }
 
     //MARK: - LifeCycle
