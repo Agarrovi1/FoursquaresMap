@@ -33,6 +33,7 @@ class ViewController: UIViewController {
     let searchRadius: CLLocationDistance = 2000
     var venues = [Venues]() {
         didSet {
+            makeAnnotations(venues: venues)
             //loadPhotoInfo()
         }
     }
@@ -107,7 +108,17 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+    private func makeAnnotations(venues: [Venues]) {
+        let annotations = mapView.annotations
+        mapView.removeAnnotations(annotations)
+        
+        for venue in venues {
+            let newAnnotation = MKPointAnnotation()
+            newAnnotation.title = venue.name
+            newAnnotation.coordinate = CLLocationCoordinate2D(latitude: venue.location.lat, longitude: venue.location.lng)
+            mapView.addAnnotation(newAnnotation)
+        }
+    }
     
     //MARK: - Constraints
     private func setViewControllerUI() {
