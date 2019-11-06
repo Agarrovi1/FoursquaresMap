@@ -22,6 +22,14 @@ class ViewController: UIViewController {
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         return collection
     }()
+    lazy var eventsListButton: UIButton = {
+           let listButton = UIButton()
+           let image = UIImage(systemName: "list.dash")
+           listButton.setImage(image, for: .normal)
+    //        listButton.addTarget(self, action: #selector(optionButtonPressed(sender:)), for: .touchUpInside)
+           listButton.tintColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+           return listButton
+       }()
     
     //MARK: - Properties
     private var locationManager = CLLocationManager()
@@ -123,9 +131,17 @@ class ViewController: UIViewController {
     //MARK: - Constraints
     private func setViewControllerUI() {
         view.backgroundColor = .white
+        setListButtonConstraints()
         setSearchBarConstraints()
         setPlaceSearchBarConstraints()
         setMapViewConstraints()
+    }
+    private func setListButtonConstraints() {
+        view.addSubview(eventsListButton)
+        eventsListButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            eventsListButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            eventsListButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)])
     }
     private func setSearchBarConstraints() {
         view.addSubview(querySearchBar)
@@ -133,7 +149,8 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             querySearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             querySearchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            querySearchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
+            querySearchBar.trailingAnchor.constraint(equalTo: eventsListButton.leadingAnchor,constant: -20),
+            eventsListButton.bottomAnchor.constraint(equalTo: querySearchBar.bottomAnchor)])
     }
     private func setMapViewConstraints() {
         view.addSubview(mapView)
@@ -141,7 +158,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: placeSearchBar.bottomAnchor),
             mapView.leadingAnchor.constraint(equalTo: querySearchBar.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: querySearchBar.trailingAnchor),
+            mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
     private func setPlaceSearchBarConstraints() {
@@ -151,7 +168,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             placeSearchBar.topAnchor.constraint(equalTo: querySearchBar.bottomAnchor),
             placeSearchBar.leadingAnchor.constraint(equalTo: querySearchBar.leadingAnchor),
-            placeSearchBar.trailingAnchor.constraint(equalTo: querySearchBar.trailingAnchor)])
+            placeSearchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
     }
 
     //MARK: - LifeCycle
