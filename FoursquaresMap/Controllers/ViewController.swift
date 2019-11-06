@@ -19,7 +19,10 @@ class ViewController: UIViewController {
     lazy var mapCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = CGSize(width: 100, height: 100)
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collection.register(MapCollectionCell.self, forCellWithReuseIdentifier: "mapCell")
+        collection.backgroundColor = .clear
         return collection
     }()
     lazy var eventsListButton: UIButton = {
@@ -42,6 +45,7 @@ class ViewController: UIViewController {
     var venues = [Venues]() {
         didSet {
             makeAnnotations(venues: venues)
+            mapCollectionView.reloadData()
             //loadPhotoInfo()
         }
     }
@@ -77,6 +81,8 @@ class ViewController: UIViewController {
         mapView.delegate = self
         querySearchBar.delegate = self
         placeSearchBar.delegate = self
+        mapCollectionView.dataSource = self
+        mapCollectionView.delegate = self
     }
     private func zoomIn(locationCoordinate: CLLocation) {
         let coordinateRegion = MKCoordinateRegion.init(center: locationCoordinate.coordinate, latitudinalMeters: self.searchRadius * 2.0, longitudinalMeters: self.searchRadius * 2.0)
@@ -135,6 +141,7 @@ class ViewController: UIViewController {
         setSearchBarConstraints()
         setPlaceSearchBarConstraints()
         setMapViewConstraints()
+        setMapCollectionConstraints()
     }
     private func setListButtonConstraints() {
         view.addSubview(eventsListButton)
@@ -170,6 +177,15 @@ class ViewController: UIViewController {
             placeSearchBar.leadingAnchor.constraint(equalTo: querySearchBar.leadingAnchor),
             placeSearchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
     }
+    private func setMapCollectionConstraints() {
+        mapView.addSubview(mapCollectionView)
+        mapCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            mapCollectionView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor),
+            mapCollectionView.leadingAnchor.constraint(equalTo: mapView.leadingAnchor),
+            mapCollectionView.trailingAnchor.constraint(equalTo: mapView.trailingAnchor),
+            mapCollectionView.heightAnchor.constraint(equalToConstant: 100)])
+    }
 
     //MARK: - LifeCycle
     override func viewDidLoad() {
@@ -200,10 +216,12 @@ extension ViewController: UISearchBarDelegate {
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchString = querySearchBar.text
+        
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.startAnimating()
         self.view.addSubview(activityIndicator)
         searchBar.resignFirstResponder()
+        
         //search request
         let searchRequest = MKLocalSearch.Request()
         guard let text = placeSearchBar.text else {
@@ -255,4 +273,18 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("\(error)")
     }
+}
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return venues.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mapCell", for: indexPath) as? MapCollectionCell else {
+            return UICollectionViewCell()
+        }
+        return cell
+    }
+    
+    
 }
