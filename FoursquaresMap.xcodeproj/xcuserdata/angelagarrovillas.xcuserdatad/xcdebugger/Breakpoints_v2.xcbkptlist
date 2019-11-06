@@ -3,4 +3,70 @@
    uuid = "FBEFAC9D-73AA-4053-8F29-54B5C89B2780"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97F501D3-8F49-4068-95E7-C6F9C85C1E89"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoursquaresMap/Controllers/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "loadVenueInfo()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "97F501D3-8F49-4068-95E7-C6F9C85C1E89 - 10e89200fa34e8c7"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FoursquaresMap.ViewController.(loadVenueInfo in _24B2C2D52305D744B14CCAAE4582ECC8)() -&gt; ()"
+                  moduleName = "FoursquaresMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelagarrovillas/Desktop/Projects/FoursquaresMap/FoursquaresMap/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "228">
+               </Location>
+               <Location
+                  uuid = "97F501D3-8F49-4068-95E7-C6F9C85C1E89 - 32b50d6132962020"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;FoursquaresMap.Venues&gt;, FoursquaresMap.AppError&gt;) -&gt; () in FoursquaresMap.ViewController.(loadVenueInfo in _24B2C2D52305D744B14CCAAE4582ECC8)() -&gt; ()"
+                  moduleName = "FoursquaresMap"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/angelagarrovillas/Desktop/Projects/FoursquaresMap/FoursquaresMap/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "251">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6556F2A-EB38-4329-9625-70D699962B41"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FoursquaresMap/Models/FourSquaresAPIClient.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "getPhotoInfo(id:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

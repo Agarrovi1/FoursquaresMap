@@ -16,17 +16,38 @@ class ViewController: UIViewController {
     var querySearchBar = UISearchBar()
     var mapView = MKMapView()
     var placeSearchBar = UISearchBar()
+    lazy var mapCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        return collection
+    }()
     
     //MARK: - Properties
     private var locationManager = CLLocationManager()
-    var initialLocation = CLLocation(latitude: 40.742054, longitude: -73.769417)
+    var initialLocation = CLLocation(latitude: 40.742054, longitude: -73.769417) {
+        didSet {
+            print(self.initialLocation)
+        }
+    }
     let searchRadius: CLLocationDistance = 2000
     var venues = [Venues]() {
         didSet {
-            loadPhotoInfo()
+            //loadPhotoInfo()
         }
     }
     var items = [[ItemWrapper]]()
+    var searchString: String? = nil {
+        didSet {
+            guard let searchString = searchString else {
+                return
+            }
+            guard searchString != "" else {
+                return
+            }
+            loadVenueInfo()
+        }
+    }
     
     //MARK: - Functions
     private func locationAuthorization() {
@@ -37,7 +58,7 @@ class ViewController: UIViewController {
             locationManager.requestLocation()
             locationManager.startUpdatingLocation()
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            zoomIn(locationCoordinate: initialLocation)
+          //  zoomIn(locationCoordinate: initialLocation)
         default:
             locationManager.requestWhenInUseAuthorization()
         }
@@ -46,19 +67,27 @@ class ViewController: UIViewController {
         locationManager.delegate = self
         mapView.delegate = self
         querySearchBar.delegate = self
+        placeSearchBar.delegate = self
     }
     private func zoomIn(locationCoordinate: CLLocation) {
         let coordinateRegion = MKCoordinateRegion.init(center: locationCoordinate.coordinate, latitudinalMeters: self.searchRadius * 2.0, longitudinalMeters: self.searchRadius * 2.0)
         self.mapView.setRegion(coordinateRegion, animated: true)
     }
     private func loadVenueInfo() {
-        FourSquaresAPIClient.manager.getVenues(lat: initialLocation.coordinate.latitude, long: initialLocation.coordinate.longitude, query: "coffee") { (result) in
+        guard let searchString = searchString else {
+            return
+        }
+        guard searchString != "" else {
+            return
+        }
+        FourSquaresAPIClient.manager.getVenues(lat: initialLocation.coordinate.latitude, long: initialLocation.coordinate.longitude, query: searchString.lowercased()) { (result) in
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let venuesFromJSON):
                 DispatchQueue.main.async {
                     self.venues = venuesFromJSON
+                    dump(self.venues)
                 }
             }
         }
@@ -78,6 +107,7 @@ class ViewController: UIViewController {
             }
         }
     }
+    
     
     //MARK: - Constraints
     private func setViewControllerUI() {
@@ -104,6 +134,7 @@ class ViewController: UIViewController {
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
     private func setPlaceSearchBarConstraints() {
+        placeSearchBar.text = "central park"
         view.addSubview(placeSearchBar)
         placeSearchBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -118,8 +149,7 @@ class ViewController: UIViewController {
         setViewControllerUI()
         setDelegates()
         mapView.userTrackingMode = .follow
-        locationAuthorization()
-        loadVenueInfo()
+        //locationAuthorization()
     }
 }
 
@@ -129,7 +159,47 @@ class ViewController: UIViewController {
 
 //MARK: SearchBarDelegate
 extension ViewController: UISearchBarDelegate {
-    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        searchString = querySearchBar.text
+//    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchString = querySearchBar.text
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.startAnimating()
+        self.view.addSubview(activityIndicator)
+        searchBar.resignFirstResponder()
+        //search request
+        let searchRequest = MKLocalSearch.Request()
+        guard let text = placeSearchBar.text else {
+            return
+        }
+        guard text != "" else {
+            return
+        }
+        searchRequest.naturalLanguageQuery = placeSearchBar.text
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            activityIndicator.stopAnimating()
+            if response == nil {
+                print(error)
+            } else {
+                //get data
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response?.boundingRegion.center.longitude
+                self.initialLocation = CLLocation(latitude: latitude ?? 0, longitude: longitude ?? 0)
+                
+                self.zoomIn(locationCoordinate: self.initialLocation)
+            }
+        }
+    }
 }
 //MARK: MapViewDelegate
 extension ViewController: MKMapViewDelegate {

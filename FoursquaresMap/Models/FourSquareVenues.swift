@@ -19,8 +19,8 @@ struct Venues: Codable {
     let location: Location
 }
 struct Location: Codable {
+    let address: String
     let lat: Double
     let lng: Double
-    let address: String
     let crossStreet: String?
 }
