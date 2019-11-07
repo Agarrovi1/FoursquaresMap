@@ -10,10 +10,10 @@ import Foundation
 
 class Collections: Codable {
     var title: String
-    var tip: String
+    var tip: String?
     var venues: [Venues]
     
-    init(title: String,tip: String, venues: [Venues]) {
+    init(title: String,tip: String?, venues: [Venues]) {
         self.title = title
         self.tip = tip
         self.venues = venues

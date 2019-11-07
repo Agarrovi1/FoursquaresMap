@@ -15,6 +15,7 @@
 		4D40F11523749E4C00B7C04B /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F11423749E4C00B7C04B /* Collections.swift */; };
 		4D40F11723749F5C00B7C04B /* CollectionPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F11623749F5C00B7C04B /* CollectionPersistence.swift */; };
 		4D53A3142374C0120002D7B7 /* AddOrCreateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53A3132374C0120002D7B7 /* AddOrCreateVC.swift */; };
+		4D53A3162374CA4F0002D7B7 /* CollectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D53A3152374CA4F0002D7B7 /* CollectionsCell.swift */; };
 		4D67DE4D2370983F008D1167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D67DE4C2370983F008D1167 /* AppDelegate.swift */; };
 		4D67DE4F2370983F008D1167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D67DE4E2370983F008D1167 /* SceneDelegate.swift */; };
 		4D67DE512370983F008D1167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D67DE502370983F008D1167 /* ViewController.swift */; };
@@ -50,6 +51,7 @@
 		4D40F11423749E4C00B7C04B /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		4D40F11623749F5C00B7C04B /* CollectionPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPersistence.swift; sourceTree = "<group>"; };
 		4D53A3132374C0120002D7B7 /* AddOrCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrCreateVC.swift; sourceTree = "<group>"; };
+		4D53A3152374CA4F0002D7B7 /* CollectionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsCell.swift; sourceTree = "<group>"; };
 		4D67DE492370983F008D1167 /* FoursquaresMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoursquaresMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D67DE4C2370983F008D1167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D67DE4E2370983F008D1167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				4D384764237365C00014902D /* MapCollectionCell.swift */,
 				4D40F0D6237380AD00B7C04B /* VenueTableCell.swift */,
+				4D53A3152374CA4F0002D7B7 /* CollectionsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				4D67DE512370983F008D1167 /* ViewController.swift in Sources */,
 				4DBF742A2370C34400B10DA1 /* VenuePhotos.swift in Sources */,
 				4D40F11723749F5C00B7C04B /* CollectionPersistence.swift in Sources */,
+				4D53A3162374CA4F0002D7B7 /* CollectionsCell.swift in Sources */,
 				4D67DE6F237098D2008D1167 /* Secrets.swift in Sources */,
 				4D40F11323749B1600B7C04B /* DetailVC.swift in Sources */,
 				4DBF74242370C1E400B10DA1 /* AppError.swift in Sources */,

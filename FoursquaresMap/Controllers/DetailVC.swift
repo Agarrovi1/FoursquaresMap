@@ -104,6 +104,7 @@ class DetailVC: UIViewController {
     }
     @objc func addButtonPressed() {
         let addOrCreateVC = AddOrCreateVC()
+        addOrCreateVC.venue = venue
         present(addOrCreateVC, animated: true, completion: nil)
     }
 

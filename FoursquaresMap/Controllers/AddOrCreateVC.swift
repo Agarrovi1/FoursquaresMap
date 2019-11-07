@@ -9,6 +9,13 @@
 import UIKit
 
 class AddOrCreateVC: UIViewController {
+    //MARK: - Properties
+    var venue: Venues?
+    var collections = [Collections]() {
+        didSet {
+            collectionsCV.reloadData()
+        }
+    }
     
     //MARK: - Objects
     var navBar: UINavigationBar = {
@@ -21,9 +28,9 @@ class AddOrCreateVC: UIViewController {
         return item
     }()
     lazy var createButton: UIBarButtonItem = {
-        let add = UIBarButtonItem(title: "Create", style: UIBarButtonItem.Style.plain, target: nil, action: nil)
-        add.tintColor = .white
-        return add
+        let create = UIBarButtonItem(title: "Create", style: UIBarButtonItem.Style.plain, target: self, action: #selector(createButtonPressed))
+        create.tintColor = .white
+        return create
     }()
     var newCollectionTextField: UITextField = {
         let textField = UITextField()
@@ -39,6 +46,14 @@ class AddOrCreateVC: UIViewController {
         textField.placeholder = "Leave a tip"
         return textField
     }()
+    var collectionsCV: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = CGSize(width: 160, height: 160)
+        let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        collection.backgroundColor = .white
+        collection.register(CollectionsCell.self, forCellWithReuseIdentifier: "addCell")
+        return collection
+    }()
     
     //MARK: - Constraints
     private func setAddCreateUI() {
@@ -46,6 +61,8 @@ class AddOrCreateVC: UIViewController {
         setupNavBar()
         setNameTextFieldConstraints()
         setTipTextFieldConstraints()
+        setCollectionViewConstraints()
+        setDelegates()
     }
     private func setNavBarConstraints() {
         view.addSubview(navBar)
@@ -75,14 +92,72 @@ class AddOrCreateVC: UIViewController {
             tipTextField.leadingAnchor.constraint(equalTo: newCollectionTextField.leadingAnchor),
             tipTextField.trailingAnchor.constraint(equalTo: newCollectionTextField.trailingAnchor)])
     }
+    private func setCollectionViewConstraints() {
+        view.addSubview(collectionsCV)
+        collectionsCV.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionsCV.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            collectionsCV.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionsCV.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collectionsCV.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
+    }
+    
+    
+    //MARK: - Functions
+    private func loadCollections() {
+        do {
+            let persistedCollections = try CollectionPersistence.manager.getObjects()
+            collections = persistedCollections
+        } catch {
+            print(error)
+        }
+    }
+    private func makeAlert() {
+        let alert = UIAlertController(title: "Required", message: "Enter a name for new collection", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
+    @objc func createButtonPressed() {
+        guard let name = newCollectionTextField.text, name != "", let venue = venue else {
+            makeAlert()
+            return
+        }
+        let newCollection = Collections(title: name, tip: tipTextField.text, venues: [venue])
+        do {
+            try CollectionPersistence.manager.save(newElement: newCollection)
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        } catch {
+            print(error)
+        }
+    }
+    private func setDelegates() {
+        collectionsCV.delegate = self
+        collectionsCV.dataSource = self
+    }
     
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setAddCreateUI()
+        loadCollections()
+    }
 
+}
+extension AddOrCreateVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collections.count
     }
     
-
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addCell", for: indexPath) as? CollectionsCell else {
+            return UICollectionViewCell()
+        }
+        let collection = collections[indexPath.row]
+        cell.nameLabel.text = collection.title
+        return cell
+    }
+    
+    
 }
