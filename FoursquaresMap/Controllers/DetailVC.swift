@@ -19,11 +19,11 @@ class DetailVC: UIViewController {
         return bar
     }()
     var navItem: UINavigationItem = {
-        let item = UINavigationItem(title: "Add or Create a collection")
+        let item = UINavigationItem(title: "Venue")
         return item
     }()
     lazy var addButton: UIBarButtonItem = {
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonPressed))
         add.tintColor = .white
         return add
     }()
@@ -97,10 +97,14 @@ class DetailVC: UIViewController {
     }
     
     //MARK: - Functions
-    func loadVenueInfo() {
+    private func loadVenueInfo() {
         guard let venue = venue else {return}
         detailNameLabel.text = venue.name
         detailAddressLabel.text = venue.location.address
+    }
+    @objc func addButtonPressed() {
+        let addOrCreateVC = AddOrCreateVC()
+        present(addOrCreateVC, animated: true, completion: nil)
     }
 
     //MARK: - LifeCycle
