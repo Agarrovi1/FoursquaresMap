@@ -25,11 +25,27 @@ class AddOrCreateVC: UIViewController {
         add.tintColor = .white
         return add
     }()
+    var newCollectionTextField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+        textField.placeholder = "Enter new collection name"
+        return textField
+    }()
+    var tipTextField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+        textField.placeholder = "Leave a tip"
+        return textField
+    }()
     
     //MARK: - Constraints
     private func setAddCreateUI() {
         setNavBarConstraints()
         setupNavBar()
+        setNameTextFieldConstraints()
+        setTipTextFieldConstraints()
     }
     private func setNavBarConstraints() {
         view.addSubview(navBar)
@@ -43,7 +59,23 @@ class AddOrCreateVC: UIViewController {
         navBar.items = [navItem]
         navItem.rightBarButtonItem = createButton
     }
-
+    private func setNameTextFieldConstraints() {
+        view.addSubview(newCollectionTextField)
+        newCollectionTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            newCollectionTextField.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 20),
+            newCollectionTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            newCollectionTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)])
+    }
+    private func setTipTextFieldConstraints() {
+        view.addSubview(tipTextField)
+        tipTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tipTextField.topAnchor.constraint(equalTo: newCollectionTextField.bottomAnchor, constant: 10),
+            tipTextField.leadingAnchor.constraint(equalTo: newCollectionTextField.leadingAnchor),
+            tipTextField.trailingAnchor.constraint(equalTo: newCollectionTextField.trailingAnchor)])
+    }
+    
     //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
