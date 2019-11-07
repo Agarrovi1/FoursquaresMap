@@ -10,6 +10,10 @@
 		4D384765237365C00014902D /* MapCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D384764237365C00014902D /* MapCollectionCell.swift */; };
 		4D40F0D52373802A00B7C04B /* VenueTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F0D42373802A00B7C04B /* VenueTableVC.swift */; };
 		4D40F0D7237380AD00B7C04B /* VenueTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F0D6237380AD00B7C04B /* VenueTableCell.swift */; };
+		4D40F11123748E7700B7C04B /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F11023748E7700B7C04B /* PersistenceHelper.swift */; };
+		4D40F11323749B1600B7C04B /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F11223749B1600B7C04B /* DetailVC.swift */; };
+		4D40F11523749E4C00B7C04B /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F11423749E4C00B7C04B /* Collections.swift */; };
+		4D40F11723749F5C00B7C04B /* CollectionPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F11623749F5C00B7C04B /* CollectionPersistence.swift */; };
 		4D67DE4D2370983F008D1167 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D67DE4C2370983F008D1167 /* AppDelegate.swift */; };
 		4D67DE4F2370983F008D1167 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D67DE4E2370983F008D1167 /* SceneDelegate.swift */; };
 		4D67DE512370983F008D1167 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D67DE502370983F008D1167 /* ViewController.swift */; };
@@ -40,6 +44,10 @@
 		4D384764237365C00014902D /* MapCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCollectionCell.swift; sourceTree = "<group>"; };
 		4D40F0D42373802A00B7C04B /* VenueTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueTableVC.swift; sourceTree = "<group>"; };
 		4D40F0D6237380AD00B7C04B /* VenueTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueTableCell.swift; sourceTree = "<group>"; };
+		4D40F11023748E7700B7C04B /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
+		4D40F11223749B1600B7C04B /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		4D40F11423749E4C00B7C04B /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
+		4D40F11623749F5C00B7C04B /* CollectionPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPersistence.swift; sourceTree = "<group>"; };
 		4D67DE492370983F008D1167 /* FoursquaresMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoursquaresMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D67DE4C2370983F008D1167 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D67DE4E2370983F008D1167 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				4D67DE502370983F008D1167 /* ViewController.swift */,
+				4D40F11223749B1600B7C04B /* DetailVC.swift */,
 				4D40F0D42373802A00B7C04B /* VenueTableVC.swift */,
 				4D67DE732370AF01008D1167 /* CollectionsViewController.swift */,
 			);
@@ -146,6 +155,9 @@
 			children = (
 				4DBF74232370C1E400B10DA1 /* AppError.swift */,
 				4DBF74252370C21A00B10DA1 /* NetworkHelper.swift */,
+				4D40F11023748E7700B7C04B /* PersistenceHelper.swift */,
+				4D40F11623749F5C00B7C04B /* CollectionPersistence.swift */,
+				4D40F11423749E4C00B7C04B /* Collections.swift */,
 				4DBF74272370C26300B10DA1 /* FourSquareVenues.swift */,
 				4DBF74292370C34400B10DA1 /* VenuePhotos.swift */,
 				4DBF742B2370C48400B10DA1 /* FourSquaresAPIClient.swift */,
@@ -258,11 +270,15 @@
 				4DBF74262370C21A00B10DA1 /* NetworkHelper.swift in Sources */,
 				4D67DE512370983F008D1167 /* ViewController.swift in Sources */,
 				4DBF742A2370C34400B10DA1 /* VenuePhotos.swift in Sources */,
+				4D40F11723749F5C00B7C04B /* CollectionPersistence.swift in Sources */,
 				4D67DE6F237098D2008D1167 /* Secrets.swift in Sources */,
+				4D40F11323749B1600B7C04B /* DetailVC.swift in Sources */,
 				4DBF74242370C1E400B10DA1 /* AppError.swift in Sources */,
 				4DBF742C2370C48400B10DA1 /* FourSquaresAPIClient.swift in Sources */,
+				4D40F11123748E7700B7C04B /* PersistenceHelper.swift in Sources */,
 				4D40F0D7237380AD00B7C04B /* VenueTableCell.swift in Sources */,
 				4D67DE742370AF01008D1167 /* CollectionsViewController.swift in Sources */,
+				4D40F11523749E4C00B7C04B /* Collections.swift in Sources */,
 				4D67DE4D2370983F008D1167 /* AppDelegate.swift in Sources */,
 				4D40F0D52373802A00B7C04B /* VenueTableVC.swift in Sources */,
 				4D67DE4F2370983F008D1167 /* SceneDelegate.swift in Sources */,

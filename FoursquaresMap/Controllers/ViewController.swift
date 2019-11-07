@@ -292,6 +292,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = DetailVC()
+        detailVC.venue = venues[indexPath.row]
+        present(detailVC, animated: true, completion: nil)
+    }
     
     
 }

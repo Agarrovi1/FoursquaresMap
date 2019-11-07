@@ -22,15 +22,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ip-sI-gEj">
-                                <rect key="frame" x="0.0" y="53" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sIw-yR-0j8">
+                                <rect key="frame" x="0.0" y="51" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="0TB-qd-W2y">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="KfF-Fj-BiP"/>
-                                    </navigationItem>
+                                    <barButtonItem systemItem="add" id="h5T-h9-R9p"/>
                                 </items>
-                            </navigationBar>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
