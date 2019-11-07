@@ -29,6 +29,15 @@
                                     <barButtonItem systemItem="add" id="h5T-h9-R9p"/>
                                 </items>
                             </toolbar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VhE-Fy-YvX">
+                                <rect key="frame" x="0.0" y="95" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="26v-mK-N7v">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" id="S1f-oF-VRI"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
