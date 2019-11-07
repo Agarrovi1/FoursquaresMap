@@ -29,7 +29,7 @@ class ViewController: UIViewController {
            let listButton = UIButton()
            let image = UIImage(systemName: "list.dash")
            listButton.setImage(image, for: .normal)
-    //        listButton.addTarget(self, action: #selector(optionButtonPressed(sender:)), for: .touchUpInside)
+            listButton.addTarget(self, action: #selector(listButtonPressed), for: .touchUpInside)
            listButton.tintColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
            return listButton
        }()
@@ -121,6 +121,12 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    @objc func listButtonPressed() {
+        let tableVC = VenueTableVC()
+        self.modalPresentationStyle = .fullScreen
+        tableVC.venuesForTable = venues
+        present(tableVC, animated: true, completion: nil)
     }
     private func makeAnnotations(venues: [Venues]) {
         let annotations = mapView.annotations
@@ -274,6 +280,7 @@ extension ViewController: CLLocationManagerDelegate {
         print("\(error)")
     }
 }
+//MARK: CollectionView Delegates
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return venues.count

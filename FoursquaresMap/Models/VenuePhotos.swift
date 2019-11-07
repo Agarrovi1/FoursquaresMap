@@ -23,6 +23,6 @@ struct ItemWrapper: Codable {
     let suffix: String
     
     func getPhotoURLString() -> String {
-        return "\(prefix)\(width)x\(height)\(suffix)"
+        return "\(prefix)\(100)x\(100)\(suffix)"
     }
 }
