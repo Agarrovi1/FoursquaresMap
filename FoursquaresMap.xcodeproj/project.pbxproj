@@ -31,6 +31,8 @@
 		4DBF742A2370C34400B10DA1 /* VenuePhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF74292370C34400B10DA1 /* VenuePhotos.swift */; };
 		4DBF742C2370C48400B10DA1 /* FourSquaresAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF742B2370C48400B10DA1 /* FourSquaresAPIClient.swift */; };
 		4DDBEF292375FC9D00698A7E /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDBEF282375FC9D00698A7E /* Protocol.swift */; };
+		4DDBEF2A2375FFD800698A7E /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40F11423749E4C00B7C04B /* Collections.swift */; };
+		4DDBEF2B2375FFEA00698A7E /* FourSquareVenues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF74272370C26300B10DA1 /* FourSquareVenues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -303,6 +305,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D67DE6423709841008D1167 /* FoursquaresMapTests.swift in Sources */,
+				4DDBEF2A2375FFD800698A7E /* Collections.swift in Sources */,
+				4DDBEF2B2375FFEA00698A7E /* FourSquareVenues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

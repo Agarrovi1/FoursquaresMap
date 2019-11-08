@@ -10,3 +10,5 @@ import Foundation
 protocol Reload {
     func reloadCollectionView()
 }
+
+
