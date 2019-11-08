@@ -118,18 +118,28 @@ class AddOrCreateVC: UIViewController {
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
-    @objc func createButtonPressed() {
-        guard let name = newCollectionTextField.text, name != "", let venue = venue else {
-            makeAlert()
-            return
-        }
-        let newCollection = Collections(title: name, tip: tipTextField.text, venues: [venue])
+    private func saveNewCollection(newCollection: Collections) {
         do {
             try CollectionPersistence.manager.save(newElement: newCollection)
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         } catch {
             print(error)
         }
+    }
+    
+    @objc func createButtonPressed() {
+        guard let name = newCollectionTextField.text, name != ""else {
+            makeAlert()
+            return
+        }
+        if let venue = venue {
+            let newCollection = Collections(title: name, tip: tipTextField.text, venues: [venue])
+            saveNewCollection(newCollection: newCollection)
+        } else {
+            let newCollection = Collections(title: name, tip: tipTextField.text, venues: [])
+            saveNewCollection(newCollection: newCollection)
+        }
+        
     }
     private func setDelegates() {
         collectionsCV.delegate = self
@@ -142,6 +152,9 @@ class AddOrCreateVC: UIViewController {
         view.backgroundColor = .white
         setAddCreateUI()
         loadCollections()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        collectionsCV.reloadData()
     }
 
 }
@@ -156,6 +169,7 @@ extension AddOrCreateVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         let collection = collections[indexPath.row]
         cell.nameLabel.text = collection.title
+        cell.addButton.isHidden = false
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
