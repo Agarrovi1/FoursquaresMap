@@ -11,6 +11,7 @@ import UIKit
 class AddOrCreateVC: UIViewController {
     //MARK: - Properties
     var venue: Venues?
+    var delegate: Reload?
     var collections = [Collections]() {
         didSet {
             collectionsCV.reloadData()
@@ -122,6 +123,7 @@ class AddOrCreateVC: UIViewController {
         do {
             try CollectionPersistence.manager.save(newElement: newCollection)
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            delegate?.reloadCollectionView()
         } catch {
             print(error)
         }

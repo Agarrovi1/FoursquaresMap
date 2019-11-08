@@ -86,6 +86,7 @@ class CollectionsViewController: UIViewController {
     @objc func addButtonPressed() {
         let addOrCreateVC = AddOrCreateVC()
         addOrCreateVC.collectionsCV.isHidden = true
+        addOrCreateVC.delegate = self
         present(addOrCreateVC, animated: true, completion: nil)
     }
     
@@ -97,7 +98,7 @@ class CollectionsViewController: UIViewController {
         loadCollections()
     }
     override func viewWillAppear(_ animated: Bool) {
-        myCollectionsCV.reloadData()
+        loadCollections()
     }
     
 
@@ -122,5 +123,13 @@ extension CollectionsViewController: UICollectionViewDelegate, UICollectionViewD
         venueTableVC.venuesForTable = collection.venues
         present(venueTableVC, animated: true, completion: nil)
     }
+    
+}
+
+extension CollectionsViewController: Reload {
+    func reloadCollectionView() {
+       loadCollections()
+    }
+    
     
 }

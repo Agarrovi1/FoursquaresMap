@@ -30,6 +30,7 @@
 		4DBF74282370C26300B10DA1 /* FourSquareVenues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF74272370C26300B10DA1 /* FourSquareVenues.swift */; };
 		4DBF742A2370C34400B10DA1 /* VenuePhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF74292370C34400B10DA1 /* VenuePhotos.swift */; };
 		4DBF742C2370C48400B10DA1 /* FourSquaresAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBF742B2370C48400B10DA1 /* FourSquaresAPIClient.swift */; };
+		4DDBEF292375FC9D00698A7E /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDBEF282375FC9D00698A7E /* Protocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		4DBF74272370C26300B10DA1 /* FourSquareVenues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourSquareVenues.swift; sourceTree = "<group>"; };
 		4DBF74292370C34400B10DA1 /* VenuePhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuePhotos.swift; sourceTree = "<group>"; };
 		4DBF742B2370C48400B10DA1 /* FourSquaresAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourSquaresAPIClient.swift; sourceTree = "<group>"; };
+		4DDBEF282375FC9D00698A7E /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				4DBF74272370C26300B10DA1 /* FourSquareVenues.swift */,
 				4DBF74292370C34400B10DA1 /* VenuePhotos.swift */,
 				4DBF742B2370C48400B10DA1 /* FourSquaresAPIClient.swift */,
+				4DDBEF282375FC9D00698A7E /* Protocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				4D40F0D52373802A00B7C04B /* VenueTableVC.swift in Sources */,
 				4D67DE4F2370983F008D1167 /* SceneDelegate.swift in Sources */,
 				4D384765237365C00014902D /* MapCollectionCell.swift in Sources */,
+				4DDBEF292375FC9D00698A7E /* Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

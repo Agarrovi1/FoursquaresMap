@@ -175,7 +175,7 @@ class ViewController: UIViewController {
             mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
     private func setPlaceSearchBarConstraints() {
-        placeSearchBar.text = "central park"
+        //placeSearchBar.text = "central park"
         view.addSubview(placeSearchBar)
         placeSearchBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
