@@ -158,6 +158,16 @@ extension AddOrCreateVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.nameLabel.text = collection.title
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        do {
+            guard let venue = venue else {return}
+            let collection = collections[indexPath.row]
+            collection.venues.append(venue)
+            try CollectionPersistence.manager.replace(newArr: collections)
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        } catch {
+            print(error)
+        }
+    }
     
 }
