@@ -247,7 +247,7 @@ extension ViewController: UISearchBarDelegate {
                 let latitude = response?.boundingRegion.center.latitude
                 let longitude = response?.boundingRegion.center.longitude
                 self.initialLocation = CLLocation(latitude: latitude ?? 0, longitude: longitude ?? 0)
-                
+                self.loadVenueInfo()
                 self.zoomIn(locationCoordinate: self.initialLocation)
             }
         }
